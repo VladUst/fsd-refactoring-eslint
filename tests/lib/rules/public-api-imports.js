@@ -60,25 +60,27 @@ ruleTester.run("public-api-imports", rule, {
   invalid: [
     {
       code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/model/file.ts'",
-      errors: [{ message: "Absolute import is allowed only from the public API (index.ts)"}],
+      errors: [{messageId: 'PUBLIC_ERROR'}],
       options: aliasOptions,
+      output: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article'",
     },
     {
-      filename: 'C:\\Users\\tim\\Desktop\\javascript\\production_project\\src\\entities\\StoreDecorator.tsx',
+      filename: 'C:\\Users\\Alina_Schneider\\Desktop\\javascript\\production_project\\src\\entities\\StoreDecorator.tsx',
       code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing/file.tsx'",
-      errors: [{message: 'Absolute import is allowed only from the public API (index.ts)'}],
+      errors: [{messageId: 'PUBLIC_ERROR'}],
+      output: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article'",
       options: [{
         alias: '@',
-        testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx']
+        testFilesPatterns: ['**/*.testing.ts', '**/*.test.ts', '**/*.stories.ts', '**/StoreDecorator.tsx']
       }],
     },
     {
-      filename: 'C:\\Users\\tim\\Desktop\\javascript\\production_project\\src\\entities\\forbidden.ts',
+      filename: 'C:\\Users\\Alina_Schneider\\Desktop\\javascript\\production_project\\src\\entities\\forbidden.ts',
       code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
-      errors: [{message: 'Only test files can import data from testing.ts public API'}],
+      errors: [{messageId: 'TESTING_PUBLIC_ERROR'}],
       options: [{
         alias: '@',
-        testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx']
+        testFilesPatterns: ['**/*.testing.ts', '**/*.test.ts', '**/*.stories.ts', '**/StoreDecorator.tsx']
       }],
     }
   ],

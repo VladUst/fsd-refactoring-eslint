@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-fsd-refactor",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "plugin for fsd architecture refactor",
   "keywords": [
     "eslint",
